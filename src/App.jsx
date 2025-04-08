@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import profpicture from '/med.jpg'
 import './App.css'
 
 function App() {
@@ -9,7 +8,7 @@ function App() {
   return (
     <>
       <div>
-          <img src="/public/med.jpg" className="picture" alt="Jeppe" />
+          <img src={profpicture} className="picture" alt="Jeppe" />
       </div>
       <h1>404</h1>
       <div className="card">
