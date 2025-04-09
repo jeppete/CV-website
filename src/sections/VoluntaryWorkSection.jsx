@@ -1,7 +1,7 @@
 // src/sections/ExperienceSection.jsx
 import { motion } from 'framer-motion';
 
-function ExperienceSection() {
+function VoluntaryWorkSection() {
   const experiences = [
     {
       title: "Senior Frontend Developer",
@@ -36,7 +36,7 @@ function ExperienceSection() {
   ];
 
   return (
-    <section id="experience" className="min-h-screen flex items-center p-8">
+    <section id="voluntary" className="min-h-screen flex items-center p-8">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -73,4 +73,4 @@ function ExperienceSection() {
   );
 }
 
-export default ExperienceSection;
+export default VoluntaryWorkSection;

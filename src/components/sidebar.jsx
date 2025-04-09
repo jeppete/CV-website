@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaHome, FaUser, FaBriefcase, FaRocket, FaCogs, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
+import './Sidebar.css';
 
 function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -10,8 +11,9 @@ function Sidebar() {
   const navItems = [
     { id: 'home', label: 'Home', icon: <FaHome size={20} /> },
     { id: 'about', label: 'About', icon: <FaUser size={20} /> },
-    { id: 'experience', label: 'Experience', icon: <FaBriefcase size={20} /> },
-    { id: 'projects', label: 'Projects', icon: <FaRocket size={20} /> },
+    { id: 'workexperience', label: 'Work experience', icon: <FaBriefcase size={20} /> },
+    { id: 'education', label: 'Education', icon: <FaBriefcase size={20} /> },
+    { id: 'voluntary', label: 'Voluntary work', icon: <FaRocket size={20} /> },
     { id: 'skills', label: 'Skills', icon: <FaCogs size={20} /> },
     { id: 'contact', label: 'Contact', icon: <FaEnvelope size={20} /> },
   ];
@@ -48,37 +50,36 @@ function Sidebar() {
 
   return (
     <nav 
-      className={`bg-gray-800 text-white h-screen fixed left-0 top-0 p-4 transition-all duration-300 z-10
-                 ${isExpanded ? 'w-64' : 'w-20'}`}
+      className={`sidebar ${isExpanded ? 'sidebar-expanded' : 'sidebar-collapsed'}`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <div className={`mb-8 overflow-hidden ${isExpanded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-        <h2 className="text-xl font-bold truncate">Your Name</h2>
-        <p className="text-gray-400 truncate">Frontend Developer</p>
+      <div className={`header ${isExpanded ? 'header-visible' : 'header-hidden'}`}>
+        <h2 className="text-xl font-bold truncate">Jeppe Thy</h2>
+        <p className="text-gray-600 truncate">Cyber security student</p>
       </div>
       
-      <ul className="space-y-4">
+      <ul className="nav-list">
         {navItems.map((item) => (
           <li key={item.id}>
             <button 
               onClick={() => scrollToSection(item.id)}
-              className={`flex items-center p-3 rounded-lg transition-colors w-full text-left ${
+              className={`nav-button ${
                 activeSection === item.id 
-                  ? 'bg-blue-600 text-white' 
-                  : 'text-gray-300 hover:bg-gray-700'
+                  ? 'nav-button-active' 
+                  : 'nav-button-inactive'
               }`}
             >
-              <span className="inline-flex justify-center items-center w-6">{item.icon}</span>
+              <span className="icon-container">{item.icon}</span>
               
-              <span className={`ml-3 truncate ${isExpanded ? 'opacity-100' : 'opacity-0 w-0'} transition-all duration-300`}>
+              <span className={`label ${isExpanded ? 'label-visible' : 'label-hidden'}`}>
                 {item.label}
               </span>
               
               {activeSection === item.id && (
                 <motion.div
                   layoutId="sidebar-indicator"
-                  className="absolute left-0 w-1 h-8 bg-white rounded-r-full"
+                  className="indicator"
                   initial={false}
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 />
@@ -88,12 +89,12 @@ function Sidebar() {
         ))}
       </ul>
       
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center">
-        <div className={`flex ${isExpanded ? 'space-x-4' : 'flex-col space-y-4'} text-gray-400`}>
-          <a href="https://github.com/jeppete" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+      <div className="social-container">
+        <div className={`social-icons ${isExpanded ? 'social-icons-expanded' : 'social-icons-collapsed'}`}>
+          <a href="https://github.com/jeppete" target="_blank" rel="noopener noreferrer" className="social-link">
             <FaGithub size={20} />
           </a>
-          <a href="https://linkedin.com/in/jeppe-thy" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+          <a href="https://linkedin.com/in/jeppe-thy" target="_blank" rel="noopener noreferrer" className="social-link">
             <FaLinkedin size={20} />
           </a>
         </div>

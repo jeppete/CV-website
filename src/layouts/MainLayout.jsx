@@ -1,11 +1,12 @@
 // src/layouts/MainLayout.jsx
 import Sidebar from '../components/sidebar';
+import './MainLayout.css';
 
 function MainLayout({ children }) {
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="layout-container">
       <Sidebar />
-      <main className="flex-1 ml-20 transition-all duration-300">
+      <main className="main-content">
         {children}
       </main>
     </div>

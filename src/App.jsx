@@ -8,7 +8,7 @@ function App() {
     <Router>
       <MainLayout>
         <HomePage />
-      </MainLayout>
+      //</MainLayout>
     </Router>
   );
 }

@@ -1,7 +1,7 @@
-// src/sections/ProjectsSection.jsx
+
 import { motion } from 'framer-motion';
 
-function ProjectsSection() {
+function EducationSection() {
   const projects = [
     {
       title: "E-commerce Platform",
@@ -24,7 +24,7 @@ function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="min-h-screen flex items-center p-8 bg-gray-50">
+    <section id="education" className="min-h-screen flex items-center p-8 bg-gray-50">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -74,4 +74,4 @@ function ProjectsSection() {
   );
 }
 
-export default ProjectsSection;
+export default EducationSection;

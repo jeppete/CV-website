@@ -11,18 +11,11 @@ function HomeSection() {
         transition={{ duration: 0.6 }}
         className="max-w-3xl"
       >
-        <h1 className="text-5xl font-bold mb-4">Your Name</h1>
-        <h2 className="text-2xl text-gray-600 mb-6">Frontend Developer</h2>
+        <h1 className="text-5xl font-bold mb-4">Jeppe Thy</h1>
+        <h2 className="text-2xl text-gray-600 mb-6">Cyber security student</h2>
         <p className="text-lg mb-8">
-          Welcome to my portfolio. I'm passionate about creating engaging web experiences
-          with modern technologies like React and Tailwind CSS.
+          Welcome to my resumé website! This is a hobby project that is created using these tools: 
         </p>
-        <button 
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
-          onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-        >
-          Learn More
-        </button>
       </motion.div>
     </section>
   );
