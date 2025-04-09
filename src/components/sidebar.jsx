@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaHome, FaUser, FaBriefcase, FaRocket, FaCogs, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import './Sidebar.css';
+import './sidebar.css';
 
 function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
