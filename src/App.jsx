@@ -1,23 +1,18 @@
-import { useState } from 'react'
-import profpicture from '/med.jpg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-          <img src={profpicture} className="picture" alt="Jeppe" />
-      </div>
-      <h1>404</h1>
-      <div className="card">
-      </div>
-      <p className="read-the-docs">
-        brb
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
