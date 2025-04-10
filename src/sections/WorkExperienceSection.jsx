@@ -1,5 +1,6 @@
-// src/sections/ExperienceSection.jsx
+// src/sections/WorkExperienceSection.jsx
 import { motion } from 'framer-motion';
+import '../styles/sections.css';
 
 function WorkExperienceSection() {
   const experiences = [
@@ -22,31 +23,31 @@ function WorkExperienceSection() {
       description: "Assisted in the development of various web projects. Gained experience with HTML, CSS, JavaScript, and modern frameworks."
     },
     {
-        title: "Web Developer Intern",
-        company: "Internship Company",
-        period: "2019 - 2020",
-        description: "Assisted in the development of various web projects. Gained experience with HTML, CSS, JavaScript, and modern frameworks."
-      },
-      {
-        title: "Web Developer Intern",
-        company: "Internship Company",
-        period: "2019 - 2020",
-        description: "Assisted in the development of various web projects. Gained experience with HTML, CSS, JavaScript, and modern frameworks."
-      }
+      title: "Web Developer Intern",
+      company: "Internship Company",
+      period: "2019 - 2020",
+      description: "Assisted in the development of various web projects. Gained experience with HTML, CSS, JavaScript, and modern frameworks."
+    },
+    {
+      title: "Web Developer Intern",
+      company: "Internship Company",
+      period: "2019 - 2020",
+      description: "Assisted in the development of various web projects. Gained experience with HTML, CSS, JavaScript, and modern frameworks."
+    }
   ];
 
   return (
-    <section id="workexperience" className="min-h-screen flex items-center p-8">
+    <section id="workexperience" className="section">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-3xl mx-auto w-full"
+        className="section-container"
       >
-        <h2 className="text-3xl font-bold mb-8">Experience</h2>
+        <h2 className="section-title">Experience</h2>
         
-        <div className="relative border-l-2 border-gray-300 pl-8 ml-4">
+        <div className="experience-timeline">
           {experiences.map((exp, index) => (
             <motion.div 
               key={index}
@@ -54,14 +55,14 @@ function WorkExperienceSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="mb-12 relative"
+              className="experience-item"
             >
-              <div className="absolute -left-12 w-6 h-6 bg-blue-600 rounded-full border-4 border-white" />
-              <div className="bg-white p-5 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold">{exp.title}</h3>
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-gray-600">{exp.company}</p>
-                  <p className="text-sm bg-gray-100 px-2 py-1 rounded">{exp.period}</p>
+              <div className="experience-dot" />
+              <div className="experience-card">
+                <h3 className="experience-title">{exp.title}</h3>
+                <div className="experience-subtitle">
+                  <p className="experience-company">{exp.company}</p>
+                  <p className="experience-period">{exp.period}</p>
                 </div>
                 <p>{exp.description}</p>
               </div>

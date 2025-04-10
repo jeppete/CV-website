@@ -1,5 +1,6 @@
 // src/sections/SkillsSection.jsx
 import { motion } from 'framer-motion';
+import '../styles/sections.css';
 
 function SkillsSection() {
   const skillCategories = [
@@ -18,17 +19,17 @@ function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="min-h-screen flex items-center p-8">
+    <section id="skills" className="section">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-3xl mx-auto w-full"
+        className="section-container"
       >
-        <h2 className="text-3xl font-bold mb-8">Skills</h2>
+        <h2 className="section-title">Skills</h2>
         
-        <div className="space-y-8">
+        <div className="skills-categories">
           {skillCategories.map((category, index) => (
             <motion.div 
               key={index}
@@ -36,12 +37,13 @@ function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="skills-category"
             >
-              <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <h3 className="skills-category-title">{category.title}</h3>
+              <div className="skills-grid">
                 {category.skills.map((skill, i) => (
-                  <div key={i} className="bg-white p-3 rounded-lg shadow-sm flex items-center">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <div key={i} className="skill-item">
+                    <div className="skill-dot"></div>
                     <span>{skill}</span>
                   </div>
                 ))}
@@ -56,10 +58,10 @@ function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12"
+          className="proficiency-section"
         >
-          <h3 className="text-xl font-semibold mb-4">Proficiency</h3>
-          <div className="space-y-4">
+          <h3 className="proficiency-title">Proficiency</h3>
+          <div className="proficiency-items">
             {[
               { skill: "React", level: 90 },
               { skill: "JavaScript", level: 85 },
@@ -67,18 +69,19 @@ function SkillsSection() {
               { skill: "Node.js", level: 70 },
               { skill: "TypeScript", level: 75 }
             ].map((item, i) => (
-              <div key={i} className="space-y-1">
-                <div className="flex justify-between">
+              <div key={i} className="proficiency-item">
+                <div className="proficiency-header">
                   <span>{item.skill}</span>
                   <span>{item.level}%</span>
                 </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="proficiency-bar-bg">
                   <motion.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: `${item.level}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.1 * i }}
-                    className="h-full bg-blue-600 rounded-full"
+                    className="proficiency-bar-fill"
+                    style={{ width: `${item.level}%` }}
                   />
                 </div>
               </div>

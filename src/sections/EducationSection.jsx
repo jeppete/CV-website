@@ -1,5 +1,5 @@
-
 import { motion } from 'framer-motion';
+import '../styles/sections.css';
 
 function EducationSection() {
   const projects = [
@@ -24,17 +24,17 @@ function EducationSection() {
   ];
 
   return (
-    <section id="education" className="min-h-screen flex items-center p-8 bg-gray-50">
+    <section id="education" className="section section-light">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto w-full"
+        className="section-container section-container-wide"
       >
-        <h2 className="text-3xl font-bold mb-8">Projects</h2>
+        <h2 className="section-title">Projects</h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="projects-grid">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -43,23 +43,23 @@ function EducationSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="project-card"
             >
-              <div className="h-40 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                <h3 className="text-xl font-bold text-white">{project.title}</h3>
+              <div className="project-header">
+                <h3 className="project-title">{project.title}</h3>
               </div>
-              <div className="p-5">
-                <p className="mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+              <div className="project-content">
+                <p className="project-description">{project.description}</p>
+                <div className="project-tags">
                   {project.tags.map((tag, i) => (
-                    <span key={i} className="text-xs bg-gray-100 px-2 py-1 rounded">
+                    <span key={i} className="project-tag">
                       {tag}
                     </span>
                   ))}
                 </div>
                 <a 
                   href={project.link} 
-                  className="text-blue-600 font-medium hover:underline"
+                  className="project-link"
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
