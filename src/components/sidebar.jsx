@@ -17,6 +17,7 @@ function Sidebar() {
     { id: 'education', label: 'Education', icon: <FaBriefcase size={20} /> },
     { id: 'voluntary', label: 'Voluntary work', icon: <FaRocket size={20} /> },
     { id: 'skills', label: 'Skills', icon: <FaCogs size={20} /> },
+    { id: 'demo', label: 'Demos', icon: <FaCogs size={20} />},
     { id: 'contact', label: 'Contact', icon: <FaEnvelope size={20} /> },
   ];
 
