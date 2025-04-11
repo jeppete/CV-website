@@ -1,5 +1,5 @@
 // src/components/Sidebar.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaHome, FaUser, FaBriefcase, FaRocket, FaCogs, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import './sidebar.css';
@@ -7,7 +7,9 @@ import './sidebar.css';
 function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  
+  // Ref to keep track of the scrollable container
+  const scrollContainerRef = useRef(null);
+ 
   const navItems = [
     { id: 'home', label: 'Home', icon: <FaHome size={20} /> },
     { id: 'about', label: 'About', icon: <FaUser size={20} /> },
@@ -18,6 +20,21 @@ function Sidebar() {
     { id: 'contact', label: 'Contact', icon: <FaEnvelope size={20} /> },
   ];
 
+  // Find and store the scrollable container
+  useEffect(() => {
+    // First try to find the main-content element
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      scrollContainerRef.current = mainContent;
+    } else {
+      // Fallback to document.documentElement (the <html> element)
+      scrollContainerRef.current = document.documentElement;
+    }
+    
+    // Call handleScroll once to set initial active section
+    handleScroll();
+  }, []);
+  
   // Smooth scroll to section when clicking on nav item
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -26,30 +43,63 @@ function Sidebar() {
       setActiveSection(id);
     }
   };
-
-  // Update active section on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map(item => item.id);
+  
+  // Handle scroll event to update active section
+  const handleScroll = () => {
+    // Get the scrollable element's scroll position
+    const scrollElement = scrollContainerRef.current;
+    if (!scrollElement) return;
+    
+    // Get scroll position
+    const scrollPosition = scrollElement === document.documentElement 
+      ? window.scrollY 
+      : scrollElement.scrollTop;
+    
+    // Calculate which section is in view
+    // Start from the bottom sections and work up for better accuracy when scrolling down
+    for (let i = navItems.length - 1; i >= 0; i--) {
+      const section = navItems[i].id;
+      const element = document.getElementById(section);
       
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+      if (element) {
+        // Get element's position relative to the viewport
+        const rect = element.getBoundingClientRect();
+        
+        // Adjust the top position based on scroll container
+        const topPosition = scrollElement === document.documentElement
+          ? rect.top + window.scrollY
+          : rect.top + scrollElement.scrollTop;
+        
+        // Check if we've scrolled past the top of this section
+        if (scrollPosition >= topPosition - 150) {
+          if (activeSection !== section) {
             setActiveSection(section);
-            break;
           }
+          break;
         }
       }
+    }
+  };
+  
+  // Set up scroll event listener
+  useEffect(() => {
+    const scrollElement = scrollContainerRef.current;
+    if (!scrollElement) return;
+    
+    // Determine which element to listen to
+    const target = scrollElement === document.documentElement ? window : scrollElement;
+    
+    // Add event listener
+    target.addEventListener('scroll', handleScroll);
+    
+    // Cleanup
+    return () => {
+      target.removeEventListener('scroll', handleScroll);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeSection]); // Re-attach when activeSection changes to avoid stale closures
 
   return (
-    <nav 
+    <nav
       className={`sidebar ${isExpanded ? 'sidebar-expanded' : 'sidebar-collapsed'}`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
@@ -58,24 +108,24 @@ function Sidebar() {
         <h2 className="text-xl font-bold truncate">Jeppe Thy</h2>
         <p className="text-gray-600 truncate">Cyber security student</p>
       </div>
-      
+     
       <ul className="nav-list">
         {navItems.map((item) => (
           <li key={item.id}>
-            <button 
+            <button
               onClick={() => scrollToSection(item.id)}
               className={`nav-button ${
-                activeSection === item.id 
-                  ? 'nav-button-active' 
+                activeSection === item.id
+                  ? 'nav-button-active'
                   : 'nav-button-inactive'
               }`}
             >
               <span className="icon-container">{item.icon}</span>
-              
+             
               <span className={`label ${isExpanded ? 'label-visible' : 'label-hidden'}`}>
                 {item.label}
               </span>
-              
+             
               {activeSection === item.id && (
                 <motion.div
                   layoutId="sidebar-indicator"
@@ -88,7 +138,7 @@ function Sidebar() {
           </li>
         ))}
       </ul>
-      
+     
       <div className="social-container">
         <div className={`social-icons ${isExpanded ? 'social-icons-expanded' : 'social-icons-collapsed'}`}>
           <a href="https://github.com/jeppete" target="_blank" rel="noopener noreferrer" className="social-link">
