@@ -27,7 +27,7 @@ import '../styles/sections.css';
     };
   
     return (
-      <section id="contact" className="section section-light">
+      <section id="contact" className="section">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

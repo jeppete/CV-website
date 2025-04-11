@@ -19,7 +19,7 @@ function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="section">
+    <section id="skills" className="section section-light">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
