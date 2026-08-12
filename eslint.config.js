@@ -30,4 +30,16 @@ export default [
       ],
     },
   },
+  {
+    // Serverless functions run on Node, not in the browser.
+    files: ['api/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.node,
+        fetch: 'readonly',
+        AbortSignal: 'readonly',
+      },
+    },
+  },
 ]

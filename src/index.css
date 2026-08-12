@@ -1,70 +1,243 @@
 @import "tailwindcss";
 
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* CRT phosphor palette: warm amber on near-black blue-green */
+  --color-crt: #0b1013;
+  --color-crt-deep: #06090b;
+  --color-crt-raised: #10181d;
+  --color-chrome: #182228;
+  --color-chrome-light: #223037;
+  --color-chrome-edge: #3a5059;
+  --color-phosphor: #ffb454;
+  --color-phosphor-dim: #c68f52;
+  --color-phosphor-faint: #7d6448;
+  --color-phosphor-bright: #ffd9a0;
+  --color-signal: #7ddc78;
+  --color-alert: #ff6d6d;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Light theme: warm "paper terminal" — same tokens, hardcopy palette. */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-crt: #ede3cd;
+  --color-crt-deep: #faf6ec;
+  --color-crt-raised: #f6efdd;
+  --color-chrome: #ddd0b2;
+  --color-chrome-light: #e9dfc6;
+  --color-chrome-edge: #a08a5e;
+  --color-phosphor: #63450f;
+  --color-phosphor-dim: #7d5c22;
+  --color-phosphor-faint: #97794a;
+  --color-phosphor-bright: #422d08;
+  --color-signal: #1e7c33;
+  --color-alert: #bb3030;
 }
-a:hover {
-  color: #535bf2;
+
+[data-theme='light'] .glow {
+  text-shadow: none;
+}
+[data-theme='light'] .crt-overlay::before {
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(70, 52, 22, 0.05) 2px 3px);
+}
+[data-theme='light'] .crt-overlay::after {
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(92, 70, 36, 0.16) 100%);
+}
+[data-theme='light'] .window-frame {
+  box-shadow:
+    0 0 0 1px var(--color-chrome-edge),
+    0 14px 40px -14px rgba(80, 60, 28, 0.4);
+}
+[data-theme='light'] .photo-crt::after {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(120, 95, 50, 0.1) 2px 3px),
+    linear-gradient(160deg, rgba(120, 95, 50, 0.12), transparent 55%);
+}
+[data-theme='light'] a:hover {
+  text-shadow: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  overflow: hidden;
+  background: var(--color-crt);
+  color: var(--color-phosphor);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::selection {
+  background: var(--color-phosphor);
+  color: var(--color-crt-deep);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-chrome-edge) transparent;
 }
-button:hover {
-  border-color: #646cff;
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+*::-webkit-scrollbar-thumb {
+  background: var(--color-chrome-edge);
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+a {
+  color: var(--color-phosphor-bright);
+  text-decoration: underline;
+  text-decoration-color: var(--color-phosphor-faint);
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration-color: var(--color-phosphor-bright);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--color-phosphor) 45%, transparent);
+}
+
+.glow {
+  text-shadow: 0 0 7px color-mix(in srgb, var(--color-phosphor) 40%, transparent);
+}
+
+/* ---------- desktop wallpaper ---------- */
+.wallpaper {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 35%,
+      color-mix(in srgb, var(--color-chrome-light) 45%, transparent),
+      transparent 70%
+    ),
+    var(--color-crt);
+}
+.wallpaper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-chrome-edge) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-chrome-edge) 16%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black, transparent 78%);
+}
+
+/* ---------- CRT overlay ---------- */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+.crt-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    rgba(0, 0, 0, 0.13) 2px 3px
+  );
+}
+.crt-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.38) 100%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .crt-overlay {
+    animation: crt-flicker 8s infinite;
   }
-  a:hover {
-    color: #747bff;
+}
+@keyframes crt-flicker {
+  0%,
+  93%,
+  100% {
+    opacity: 1;
   }
-  button {
-    background-color: #f9f9f9;
+  94% {
+    opacity: 0.93;
   }
+  95% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.96;
+  }
+}
+
+/* ---------- blinking block cursor ---------- */
+@keyframes cursor-blink {
+  0%,
+  54% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+.cursor-blink {
+  animation: cursor-blink 1.1s step-end infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink {
+    animation: none;
+  }
+}
+
+/* ---------- profile photo: sits inside the CRT aesthetic ---------- */
+.photo-crt {
+  position: relative;
+  overflow: hidden;
+}
+.photo-crt img {
+  display: block;
+  width: 100%;
+  filter: sepia(0.35) saturate(0.8) contrast(1.06) brightness(0.96);
+}
+.photo-crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(11, 16, 19, 0.22) 2px 3px),
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-phosphor) 14%, transparent),
+      transparent 55%
+    );
+}
+
+/* ---------- window chrome ---------- */
+.window-frame {
+  box-shadow:
+    0 0 0 1px var(--color-chrome-edge),
+    0 18px 50px -12px rgba(0, 0, 0, 0.8),
+    0 0 24px -6px color-mix(in srgb, var(--color-phosphor) 12%, transparent);
+}
+.titlebar-focused {
+  background: linear-gradient(180deg, var(--color-chrome-light), var(--color-chrome));
+}
+
+.term-line {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
