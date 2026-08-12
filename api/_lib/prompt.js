@@ -34,8 +34,9 @@ function buildFactSheet() {
   lines.push('')
   lines.push('## Work experience (most recent first)')
   experience.forEach((job) => {
+    const site = job.url ? ` [${job.url}]` : ''
     lines.push(
-      `- ${bi(job.role)} at ${bi(job.org)}, ${bi(job.location)} — ${formatRange(job.start, job.end, 'en')}. ${bi(job.summary)}`,
+      `- ${bi(job.role)} at ${bi(job.org)}${site}, ${bi(job.location)} — ${formatRange(job.start, job.end, 'en')}. ${bi(job.summary)}`,
     )
   })
 

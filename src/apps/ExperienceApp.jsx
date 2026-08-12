@@ -18,7 +18,16 @@ export default function ExperienceApp() {
             />
             <div className="flex flex-wrap items-baseline gap-x-2">
               <h3 className="font-bold text-phosphor-bright">{pick(job.role, locale)}</h3>
-              <span className="text-signal">@ {pick(job.org, locale)}</span>
+              <span className="text-signal">
+                @{' '}
+                {job.url ? (
+                  <a href={job.url} target="_blank" rel="noreferrer" className="text-signal">
+                    {pick(job.org, locale)}
+                  </a>
+                ) : (
+                  pick(job.org, locale)
+                )}
+              </span>
             </div>
             <p className="text-xs text-phosphor-dim">
               <time dateTime={job.start}>{formatRange(job.start, job.end, locale)}</time>

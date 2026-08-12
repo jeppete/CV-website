@@ -31,6 +31,7 @@ export const experience = [
     id: 'barcoa',
     role: { no: 'CTO', en: 'CTO' },
     org: 'Barcoa',
+    url: 'https://barcoa.no',
     location: { no: 'København, Danmark', en: 'Copenhagen, Denmark' },
     start: '2025-10',
     end: null,
