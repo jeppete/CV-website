@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import LocaleProvider from './i18n/LocaleProvider'
+import ThemeProvider from './theme/ThemeProvider'
 import OSProvider from './os/OSProvider'
 import Shell from './components/Shell'
 import BootScreen from './components/BootScreen'
@@ -26,10 +27,12 @@ export default function App() {
 
   return (
     <LocaleProvider>
-      <OSProvider>
-        {booted ? <Shell /> : <BootScreen onDone={finishBoot} />}
-        <div className="crt-overlay" aria-hidden="true" />
-      </OSProvider>
+      <ThemeProvider>
+        <OSProvider>
+          {booted ? <Shell /> : <BootScreen onDone={finishBoot} />}
+          <div className="crt-overlay" aria-hidden="true" />
+        </OSProvider>
+      </ThemeProvider>
     </LocaleProvider>
   )
 }

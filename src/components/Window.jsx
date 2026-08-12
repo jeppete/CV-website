@@ -72,7 +72,7 @@ export default function Window({
       animate={{ opacity: 1, scale: 1 }}
       exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
       transition={{ type: 'tween', duration: 0.18, ease: 'easeOut' }}
-      style={{ zIndex: z, left: pos.x, top: pos.y, width: meta.w }}
+      style={{ zIndex: z, left: pos.x, top: pos.y, width: meta.w, height: meta.h }}
       className={`window-frame absolute flex max-h-[78%] max-w-[calc(100vw-24px)] flex-col bg-crt-raised ${
         focused ? '' : 'opacity-90'
       }`}
@@ -104,12 +104,8 @@ export default function Window({
           ×
         </button>
       </div>
-      <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto" style={{ height: meta.id === 'terminal' ? 420 : 'auto' }}>
-        {meta.id === 'terminal' ? (
-          children
-        ) : (
-          <div className="p-4">{children}</div>
-        )}
+      <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto">
+        {meta.id === 'terminal' ? children : <div className="p-4">{children}</div>}
       </div>
     </MotionDiv>
   )

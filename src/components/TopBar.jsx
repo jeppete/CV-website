@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocale } from '../i18n/useLocale'
+import { useTheme } from '../theme/useTheme'
 
 function Clock() {
   const [now, setNow] = useState(() => new Date())
@@ -19,6 +20,7 @@ function Clock() {
 
 export default function TopBar() {
   const { locale, setLocale, t } = useLocale()
+  const { theme, setTheme } = useTheme()
   return (
     <header className="flex items-center justify-between border-b border-chrome-edge bg-chrome px-3 py-1.5 text-sm">
       <div className="flex items-baseline gap-2">
@@ -31,6 +33,14 @@ export default function TopBar() {
         <span className="text-xs text-phosphor-faint">{t('os.version')}</span>
       </div>
       <div className="flex items-center gap-4">
+        <button
+          type="button"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          aria-label={t('theme.toggle')}
+          className="border border-chrome-edge px-2 py-0.5 text-xs text-phosphor-dim transition-colors hover:border-phosphor-dim hover:text-phosphor"
+        >
+          [ {t(`theme.${theme}`)} ]
+        </button>
         <div
           role="group"
           aria-label={t('lang.toggle')}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTerminal } from './useTerminal'
 import OutputLine, { Prompt } from './OutputLine'
 import { useLocale } from '../i18n/useLocale'
+import { useTheme } from '../theme/useTheme'
 import { useIsMobile } from '../components/useIsMobile'
 
 const CHIPS = ['help', 'whoami', 'experience', 'education', 'skills', 'contact', 'neofetch']
@@ -9,6 +10,7 @@ const CHIPS = ['help', 'whoami', 'experience', 'education', 'skills', 'contact',
 export default function Terminal() {
   const { lines, input, setInput, exec, historyPrev, historyNext, complete } = useTerminal()
   const { locale, t } = useLocale()
+  const { theme } = useTheme()
   const isMobile = useIsMobile()
   const inputRef = useRef(null)
   const scrollRef = useRef(null)
@@ -64,6 +66,7 @@ export default function Terminal() {
   const atCaret = input[caret] ?? ' '
   const after = input.slice(caret + 1)
   const langChip = locale === 'no' ? 'lang en' : 'lang no'
+  const themeChip = theme === 'dark' ? 'theme light' : 'theme dark'
 
   return (
     // Click-to-focus convenience; the real input remains keyboard-accessible.
@@ -90,7 +93,7 @@ export default function Terminal() {
       </div>
 
       <div className="flex gap-1.5 overflow-x-auto border-t border-chrome-edge bg-chrome/60 px-2 py-1.5">
-        {[...CHIPS, langChip].map((cmd) => (
+        {[...CHIPS, langChip, themeChip].map((cmd) => (
           <button
             key={cmd}
             type="button"

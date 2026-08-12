@@ -3,7 +3,7 @@
 // x/y/w are desktop spawn hints in px.
 
 export const appMeta = [
-  { id: 'terminal', glyph: '>_', titleKey: 'app.terminal', x: 48, y: 48, w: 640 },
+  { id: 'terminal', glyph: '>_', titleKey: 'app.terminal', x: 48, y: 48, w: 640, h: 460 },
   { id: 'about', glyph: '@', titleKey: 'app.about', x: 720, y: 72, w: 420 },
   { id: 'experience', glyph: '$', titleKey: 'app.experience', x: 140, y: 100, w: 560 },
   { id: 'education', glyph: '#', titleKey: 'app.education', x: 200, y: 140, w: 520 },

@@ -15,6 +15,9 @@ export const strings = {
   'window.close': { no: 'Lukk vindu', en: 'Close window' },
   'dock.label': { no: 'Apper', en: 'Apps' },
   'lang.toggle': { no: 'Bytt språk', en: 'Switch language' },
+  'theme.toggle': { no: 'Bytt tema', en: 'Switch theme' },
+  'theme.dark': { no: 'mørk', en: 'dark' },
+  'theme.light': { no: 'lys', en: 'light' },
 
   'term.welcome1': { no: 'Velkommen til JeppeOS 1.0 — CV-et til Jeppe Evensen Thy.', en: "Welcome to JeppeOS 1.0 — Jeppe Evensen Thy's CV." },
   'term.welcome2': { no: "Skriv 'help' for kommandoer, eller bruk dokken nederst.", en: "Type 'help' to list commands, or use the dock below." },
@@ -34,11 +37,16 @@ export const strings = {
   'cmd.ls': { no: 'list tilgjengelige apper', en: 'list available apps' },
   'cmd.lang': { no: 'bytt språk: lang no|en', en: 'switch language: lang no|en' },
   'cmd.neofetch': { no: 'systeminfo', en: 'system info' },
+  'cmd.theme': { no: 'bytt tema: theme dark|light', en: 'switch theme: theme dark|light' },
   'cmd.clear': { no: 'tøm terminalen', en: 'clear the terminal' },
 
   'lang.usage': { no: 'bruk: lang no | lang en (nå: %s)', en: 'usage: lang no | lang en (current: %s)' },
   'lang.set.no': { no: 'Språk satt til norsk.', en: 'Språk satt til norsk.' },
   'lang.set.en': { no: 'Language set to English.', en: 'Language set to English.' },
+
+  'theme.usage': { no: 'bruk: theme dark | theme light (nå: %s)', en: 'usage: theme dark | theme light (current: %s)' },
+  'theme.set.dark': { no: 'Tema: mørk CRT.', en: 'Theme: dark CRT.' },
+  'theme.set.light': { no: 'Tema: lys papirmodus.', en: 'Theme: light paper mode.' },
 
   'open.usage': { no: 'bruk: open <app> — se \'ls\'', en: "usage: open <app> — see 'ls'" },
   'open.unknown': { no: 'fant ikke appen: %s', en: 'no such app: %s' },
@@ -63,10 +71,6 @@ export const strings = {
   'contact.email': { no: 'E-post', en: 'Email' },
   'contact.phone': { no: 'Telefon', en: 'Phone' },
   'contact.location': { no: 'Sted', en: 'Location' },
-  'contact.blurb': {
-    no: 'Ta gjerne kontakt — jeg svarer raskt.',
-    en: 'Feel free to reach out — I reply quickly.',
-  },
 
   'edu.thesisNow': { no: 'pågår', en: 'in progress' },
 

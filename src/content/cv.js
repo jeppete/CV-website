@@ -6,10 +6,9 @@ export const profile = {
   age: 26, // update yearly (birth date not public in the CV)
   location: { no: 'København, Danmark', en: 'Copenhagen, Denmark' },
   title: {
-    no: 'CTO i Barcoa · MSc-student i Computer Science',
-    en: 'CTO at Barcoa · MSc CS student',
+    no: 'MSc-student i Computer Science ved DTU · CTO i Barcoa',
+    en: 'MSc Computer Science student at DTU · CTO at Barcoa',
   },
-  tagline: { no: 'Fra politibetjent til CTO.', en: 'From police officer to CTO.' },
   email: 'jeppethy@outlook.com',
   phone: '+47 467 81 510',
   phoneHref: 'tel:+4746781510',
@@ -17,14 +16,12 @@ export const profile = {
   github: 'https://github.com/jeppete',
   about: {
     no: [
-      'Jeg har tatt en litt uvanlig vei inn i teknologien. Jeg startet med en bachelor på Politihøgskolen og jobbet som politibetjent og fengselsbetjent, før jeg byttet spor og tok en bachelor i digital infrastruktur og cybersikkerhet ved NTNU.',
+      'Jeg har tatt en litt uvanlig vei inn i teknologien. Jeg startet med en bachelor på Politihøgskolen og jobbet som politibetjent, før jeg byttet spor og tok en bachelor i digital infrastruktur og cybersikkerhet ved NTNU. Ved siden av studiene jobbet jeg deltid som fengselsbetjent.',
       'Nå bor jeg i København, hvor jeg tar en master i Computer Science and Engineering ved DTU — ved siden av rollene som CTO i Barcoa og fullstack-utvikler i Legid.',
-      'Bakgrunnen fra politiet har gitt meg ro under press, struktur og vilje til å ta ansvar — egenskaper jeg tar med meg inn i tekniske team og produktutvikling.',
     ],
     en: [
-      "I took an unusual route into tech. I started with a bachelor's degree at the Norwegian Police University College and worked as a police officer and prison officer, before switching tracks to a BSc in digital infrastructure and cybersecurity at NTNU.",
+      "I took an unusual route into tech. I started with a bachelor's degree at the Norwegian Police University College and worked as a police officer, before switching tracks to a BSc in digital infrastructure and cybersecurity at NTNU — working part-time as a prison officer alongside my studies.",
       'I now live in Copenhagen, pursuing an MSc in Computer Science and Engineering at DTU — alongside my roles as CTO at Barcoa and full-stack developer at Legid.',
-      'My background in the police force gave me calm under pressure, structure and a willingness to take ownership — qualities I bring into engineering teams and product work.',
     ],
   },
 }
@@ -236,7 +233,6 @@ export const skills = [
     items: [
       { no: 'Ledelse', en: 'Leadership' },
       { no: 'Prosjektledelse', en: 'Project management' },
-      { no: 'Ro under press', en: 'Calm under pressure' },
       { no: 'Formidling', en: 'Communication' },
     ],
   },

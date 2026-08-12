@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react'
 import { commands, commandNames, findCommand } from './commands'
 import { useOS } from '../os/useOS'
 import { useLocale } from '../i18n/useLocale'
+import { useTheme } from '../theme/useTheme'
 
 let lineCounter = 0
 const nextId = () => ++lineCounter
@@ -23,6 +24,7 @@ function longestCommonPrefix(items) {
 export function useTerminal() {
   const { openWindow } = useOS()
   const { locale, setLocale, t } = useLocale()
+  const { theme, setTheme } = useTheme()
   const [input, setInput] = useState('')
   const [lines, setLines] = useState(() => [
     toLine({ kind: 'ok', text: t('term.welcome1') }),
@@ -52,9 +54,9 @@ export function useTerminal() {
         push([{ kind: 'err', text: t('term.notfound', name) }])
         return
       }
-      push(cmd.run(args, { openWindow, setLocale, locale, t, clear }) || [])
+      push(cmd.run(args, { openWindow, setLocale, locale, t, clear, theme, setTheme }) || [])
     },
-    [push, clear, openWindow, setLocale, locale, t],
+    [push, clear, openWindow, setLocale, locale, t, theme, setTheme],
   )
 
   const historyPrev = useCallback(() => {

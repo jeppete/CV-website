@@ -22,6 +22,46 @@
   color-scheme: dark;
 }
 
+/* Light theme: warm "paper terminal" — same tokens, hardcopy palette. */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-crt: #ede3cd;
+  --color-crt-deep: #faf6ec;
+  --color-crt-raised: #f6efdd;
+  --color-chrome: #ddd0b2;
+  --color-chrome-light: #e9dfc6;
+  --color-chrome-edge: #a08a5e;
+  --color-phosphor: #63450f;
+  --color-phosphor-dim: #7d5c22;
+  --color-phosphor-faint: #97794a;
+  --color-phosphor-bright: #422d08;
+  --color-signal: #1e7c33;
+  --color-alert: #bb3030;
+}
+
+[data-theme='light'] .glow {
+  text-shadow: none;
+}
+[data-theme='light'] .crt-overlay::before {
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(70, 52, 22, 0.05) 2px 3px);
+}
+[data-theme='light'] .crt-overlay::after {
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(92, 70, 36, 0.16) 100%);
+}
+[data-theme='light'] .window-frame {
+  box-shadow:
+    0 0 0 1px var(--color-chrome-edge),
+    0 14px 40px -14px rgba(80, 60, 28, 0.4);
+}
+[data-theme='light'] .photo-crt::after {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(120, 95, 50, 0.1) 2px 3px),
+    linear-gradient(160deg, rgba(120, 95, 50, 0.12), transparent 55%);
+}
+[data-theme='light'] a:hover {
+  text-shadow: none;
+}
+
 html,
 body,
 #root {

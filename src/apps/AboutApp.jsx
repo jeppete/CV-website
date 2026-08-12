@@ -8,12 +8,11 @@ export default function AboutApp() {
     <article className="space-y-4 text-sm">
       <div className="flex items-start gap-4">
         <div className="photo-crt w-24 shrink-0 border border-chrome-edge sm:w-28">
-          <img src="/med.jpg" alt={profile.name} width="640" height="800" />
+          <img src="/Jeppe-ferdig.jpg" alt={profile.name} width="800" height="1198" />
         </div>
         <div className="min-w-0">
           <h3 className="text-base font-bold text-phosphor-bright glow">{profile.name}</h3>
           <p className="text-phosphor-dim">{pick(profile.title, locale)}</p>
-          <p className="mt-2 text-signal">» {pick(profile.tagline, locale)}</p>
         </div>
       </div>
       {profile.about[locale].map((paragraph) => (

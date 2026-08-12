@@ -16,7 +16,6 @@ function printSection(id, ctx) {
       return [
         { kind: 'ok', text: profile.name },
         pick(profile.title, locale),
-        `» ${pick(profile.tagline, locale)}`,
         ...profile.about[locale].map((p) => `  ${p}`),
       ]
     case 'experience':
@@ -118,6 +117,19 @@ export const commands = [
       if (target !== 'no' && target !== 'en') return [ctx.t('lang.usage', ctx.locale)]
       ctx.setLocale(target)
       return [{ kind: 'ok', text: ctx.t(`lang.set.${target}`) }]
+    },
+  },
+  {
+    name: 'theme',
+    descKey: 'cmd.theme',
+    argCompletions: ['dark', 'light'],
+    run: (args, ctx) => {
+      const target = args[0]
+      if (target !== 'dark' && target !== 'light') {
+        return [ctx.t('theme.usage', ctx.t(`theme.${ctx.theme}`))]
+      }
+      ctx.setTheme(target)
+      return [{ kind: 'ok', text: ctx.t(`theme.set.${target}`) }]
     },
   },
   {

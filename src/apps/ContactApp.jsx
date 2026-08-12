@@ -13,7 +13,6 @@ export default function ContactApp() {
   ]
   return (
     <div className="space-y-4 text-sm">
-      <p className="text-signal">» {t('contact.blurb')}</p>
       <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2">
         {rows.map(([label, value, href]) => (
           <div key={label} className="col-span-2 grid grid-cols-subgrid items-baseline">
