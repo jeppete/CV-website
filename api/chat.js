@@ -8,7 +8,18 @@ import { buildSystemPrompt } from './_lib/prompt.js'
 import { detect, alert } from './_lib/honeypot.js'
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models'
-const DEFAULT_MODEL = 'gemini-2.5-flash'
+
+// Model availability varies by API key/project, so we try candidates in order
+// and cache the first that works (a 404 means "not available for this key").
+// GEMINI_MODEL, if set, is tried first.
+const FALLBACK_MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-1.5-flash']
+function modelCandidates() {
+  const preferred = process.env.GEMINI_MODEL
+  const list = preferred ? [preferred, ...FALLBACK_MODELS] : [...FALLBACK_MODELS]
+  if (resolvedModel) list.unshift(resolvedModel)
+  return [...new Set(list)]
+}
+let resolvedModel = null // cached across warm invocations once one succeeds
 
 // Input limits (best-effort abuse/cost guard; see plan for durable-limit note).
 const MAX_MESSAGES = 20
@@ -54,7 +65,7 @@ function sanitize(messages) {
   return clean
 }
 
-async function callGemini({ systemPrompt, messages, model, apiKey }) {
+async function callGemini({ systemPrompt, messages, apiKey }) {
   const contents = messages.map((m) => ({
     role: m.role === 'assistant' ? 'model' : 'user',
     parts: [{ text: m.content }],
@@ -72,7 +83,7 @@ async function callGemini({ systemPrompt, messages, model, apiKey }) {
     ].map((category) => ({ category, threshold: 'BLOCK_ONLY_HIGH' })),
   }
 
-  async function post(withThinking) {
+  async function post(model, withThinking) {
     const body = withThinking
       ? { ...base, generationConfig: { ...base.generationConfig, thinkingConfig: { thinkingBudget: 0 } } }
       : base
@@ -84,19 +95,30 @@ async function callGemini({ systemPrompt, messages, model, apiKey }) {
     })
   }
 
-  let res = await post(true)
-  // Some models reject thinkingConfig with 400 — retry once without it.
-  if (res.status === 400) res = await post(false)
-  if (!res.ok) throw new Error(`gemini_status_${res.status}`)
+  let sawModel404 = false
+  for (const model of modelCandidates()) {
+    let res = await post(model, true)
+    // Some models reject thinkingConfig with 400 — retry once without it.
+    if (res.status === 400) res = await post(model, false)
+    // Model not available for this key — try the next candidate.
+    if (res.status === 404) {
+      sawModel404 = true
+      if (resolvedModel === model) resolvedModel = null
+      continue
+    }
+    if (!res.ok) throw new Error(`gemini_status_${res.status}`)
 
-  const data = await res.json()
-  if (data.promptFeedback?.blockReason) throw new Error('blocked')
-  const reply = (data.candidates?.[0]?.content?.parts || [])
-    .map((p) => p.text || '')
-    .join('')
-    .trim()
-  if (!reply) throw new Error('empty')
-  return reply
+    const data = await res.json()
+    if (data.promptFeedback?.blockReason) throw new Error('blocked')
+    const reply = (data.candidates?.[0]?.content?.parts || [])
+      .map((p) => p.text || '')
+      .join('')
+      .trim()
+    if (!reply) throw new Error('empty')
+    resolvedModel = model // remember the working model for next time
+    return reply
+  }
+  throw new Error(sawModel404 ? 'no_available_model' : 'upstream')
 }
 
 export default async function handler(req, res) {
@@ -126,12 +148,11 @@ export default async function handler(req, res) {
   }
 
   const bait = { canary: process.env.HONEYPOT_CANARY, decoyId: process.env.HONEYPOT_DECOY_ID }
-  const model = process.env.GEMINI_MODEL || DEFAULT_MODEL
 
   let reply
   try {
     const systemPrompt = buildSystemPrompt(locale, bait)
-    reply = await callGemini({ systemPrompt, messages: clean, model, apiKey })
+    reply = await callGemini({ systemPrompt, messages: clean, apiKey })
   } catch {
     res.status(502).json({ error: 'upstream' })
     return
