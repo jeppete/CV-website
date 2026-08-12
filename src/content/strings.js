@@ -106,7 +106,7 @@ export const strings = {
   'neofetch.kernel': { no: 'Kjerne', en: 'Kernel' },
   'neofetch.kernelValue': { no: 'politi → cybersikkerhet → CTO', en: 'police → cybersecurity → CTO' },
   'neofetch.uptime': { no: 'Oppetid', en: 'Uptime' },
-  'neofetch.uptimeValue': { no: '26 år', en: '26 years' },
+  'neofetch.uptimeValue': { no: '27 år', en: '27 years' },
   'neofetch.shell': { no: 'Skall', en: 'Shell' },
   'neofetch.locale': { no: 'Språk', en: 'Locale' },
   'neofetch.packages': { no: 'Pakker', en: 'Packages' },

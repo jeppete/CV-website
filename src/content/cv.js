@@ -3,7 +3,7 @@
 
 export const profile = {
   name: 'Jeppe Evensen Thy',
-  age: 26, // update yearly (birth date not public in the CV)
+  age: 27, // update yearly (birth date not public in the CV)
   location: { no: 'København, Danmark', en: 'Copenhagen, Denmark' },
   title: {
     no: 'MSc-student i Computer Science ved DTU · CTO i Barcoa',
