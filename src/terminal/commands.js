@@ -83,6 +83,12 @@ export const commands = [
   sectionCommand('volunteer', 'cmd.volunteer'),
   sectionCommand('contact', 'cmd.contact'),
   {
+    name: 'chat',
+    aliases: ['ask'],
+    descKey: 'cmd.chat',
+    run: (args, ctx) => openApp('chat', ctx),
+  },
+  {
     name: 'open',
     descKey: 'cmd.open',
     argCompletions: appIds,

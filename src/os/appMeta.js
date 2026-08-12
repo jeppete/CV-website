@@ -10,6 +10,7 @@ export const appMeta = [
   { id: 'skills', glyph: '%', titleKey: 'app.skills', x: 260, y: 120, w: 500 },
   { id: 'volunteer', glyph: '&', titleKey: 'app.volunteer', x: 320, y: 160, w: 540 },
   { id: 'contact', glyph: '*', titleKey: 'app.contact', x: 380, y: 180, w: 440 },
+  { id: 'chat', glyph: '?', titleKey: 'app.chat', x: 300, y: 90, w: 460, h: 520 },
 ]
 
 export const appIds = appMeta.map((a) => a.id)
