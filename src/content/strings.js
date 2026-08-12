@@ -104,7 +104,7 @@ export const strings = {
   'neofetch.os': { no: 'OS', en: 'OS' },
   'neofetch.host': { no: 'Vert', en: 'Host' },
   'neofetch.kernel': { no: 'Kjerne', en: 'Kernel' },
-  'neofetch.kernelValue': { no: 'politi → cybersikkerhet → CTO', en: 'police → cybersecurity → CTO' },
+  'neofetch.kernelValue': { no: 'politi → cybersikkerhet', en: 'police → cybersecurity' },
   'neofetch.uptime': { no: 'Oppetid', en: 'Uptime' },
   'neofetch.uptimeValue': { no: '27 år', en: '27 years' },
   'neofetch.shell': { no: 'Skall', en: 'Shell' },
@@ -116,7 +116,7 @@ export const strings = {
 export const bootLines = [
   { no: 'JeppeOS BIOS v1.0 — initialiserer …', en: 'JeppeOS BIOS v1.0 — initializing …' },
   { no: 'Minnetest: 640K OK (mer enn nok for en CV)', en: 'Memory check: 640K OK (plenty for a CV)' },
-  { no: 'Laster kjerne: politi → cybersikkerhet → CTO', en: 'Loading kernel: police → cybersecurity → CTO' },
+  { no: 'Laster kjerne: politi → cybersikkerhet', en: 'Loading kernel: police → cybersecurity' },
   { no: 'Monterer /erfaring … OK', en: 'Mounting /experience … OK' },
   { no: 'Monterer /utdanning … OK', en: 'Mounting /education … OK' },
   { no: 'Starter jsh …', en: 'Starting jsh …' },
