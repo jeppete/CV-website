@@ -17,7 +17,7 @@ export default function Dock() {
           key={app.id}
           type="button"
           onClick={() => openWindow(app.id)}
-          className="group flex shrink-0 flex-col items-center gap-0.5 px-1.5 py-0.5"
+          className="group flex w-16 shrink-0 flex-col items-center gap-0.5 px-1.5 py-0.5 md:w-20"
         >
           <span
             aria-hidden="true"
@@ -25,7 +25,7 @@ export default function Dock() {
           >
             {app.glyph}
           </span>
-          <span className="text-[10px] text-phosphor-dim group-hover:text-phosphor">
+          <span className="text-center text-[10px] leading-tight text-phosphor-dim group-hover:text-phosphor">
             {t(app.titleKey)}
           </span>
           <span
