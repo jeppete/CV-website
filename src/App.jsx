@@ -1,23 +1,35 @@
 import { useState } from 'react'
-import profpicture from '/med.jpg'
-import './App.css'
+import LocaleProvider from './i18n/LocaleProvider'
+import OSProvider from './os/OSProvider'
+import Shell from './components/Shell'
+import BootScreen from './components/BootScreen'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-          <img src={profpicture} className="picture" alt="Jeppe" />
-      </div>
-      <h1>404</h1>
-      <div className="card">
-      </div>
-      <p className="read-the-docs">
-        brb
-      </p>
-    </>
-  )
+function alreadyBooted() {
+  try {
+    return sessionStorage.getItem('jeppeos.booted') === '1'
+  } catch {
+    return false
+  }
 }
 
-export default App
+export default function App() {
+  const [booted, setBooted] = useState(alreadyBooted)
+
+  const finishBoot = () => {
+    try {
+      sessionStorage.setItem('jeppeos.booted', '1')
+    } catch {
+      /* storage unavailable */
+    }
+    setBooted(true)
+  }
+
+  return (
+    <LocaleProvider>
+      <OSProvider>
+        {booted ? <Shell /> : <BootScreen onDone={finishBoot} />}
+        <div className="crt-overlay" aria-hidden="true" />
+      </OSProvider>
+    </LocaleProvider>
+  )
+}
