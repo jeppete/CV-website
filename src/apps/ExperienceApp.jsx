@@ -31,8 +31,7 @@ export default function ExperienceApp() {
             </div>
             <p className="text-xs text-phosphor-dim">
               <time dateTime={job.start}>{formatRange(job.start, job.end, locale)}</time>
-              {' · '}
-              {pick(job.location, locale)}
+              {pick(job.location, locale) && ` · ${pick(job.location, locale)}`}
             </p>
             <p className="mt-1 text-sm">{pick(job.summary, locale)}</p>
             {job.tags && (

@@ -40,7 +40,6 @@ function printSection(id, ctx) {
     case 'contact':
       return [
         { kind: 'link', href: `mailto:${profile.email}`, text: profile.email },
-        { kind: 'link', href: profile.phoneHref, text: profile.phone },
         { kind: 'link', href: profile.linkedin, text: 'linkedin.com/in/jeppe-thy' },
         { kind: 'link', href: profile.github, text: 'github.com/jeppete' },
       ]

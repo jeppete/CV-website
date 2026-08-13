@@ -9,7 +9,7 @@ export const strings = {
   'app.experience': { no: 'Erfaring', en: 'Experience' },
   'app.education': { no: 'Utdanning', en: 'Education' },
   'app.skills': { no: 'Ferdigheter', en: 'Skills' },
-  'app.volunteer': { no: 'Frivillig arbeid', en: 'Volunteer work' },
+  'app.volunteer': { no: 'Verv', en: 'Volunteer work' },
   'app.contact': { no: 'Kontakt', en: 'Contact' },
   'app.chat': { no: 'Spør Jeppe', en: 'Ask Jeppe' },
 
@@ -32,7 +32,7 @@ export const strings = {
   'cmd.experience': { no: 'åpne arbeidserfaring', en: 'open work experience' },
   'cmd.education': { no: 'åpne utdanning', en: 'open education' },
   'cmd.skills': { no: 'åpne ferdigheter', en: 'open skills' },
-  'cmd.volunteer': { no: 'åpne frivillig arbeid', en: 'open volunteer work' },
+  'cmd.volunteer': { no: 'åpne verv', en: 'open volunteer work' },
   'cmd.contact': { no: 'åpne kontaktinfo', en: 'open contact info' },
   'cmd.open': { no: 'åpne et vindu: open <app>', en: 'open a window: open <app>' },
   'cmd.ls': { no: 'list tilgjengelige apper', en: 'list available apps' },
@@ -71,7 +71,6 @@ export const strings = {
   'about.factsLabel': { no: 'Nøkkelinfo', en: 'Quick facts' },
 
   'contact.email': { no: 'E-post', en: 'Email' },
-  'contact.phone': { no: 'Telefon', en: 'Phone' },
   'contact.location': { no: 'Sted', en: 'Location' },
 
   'chat.intro': {

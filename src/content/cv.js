@@ -10,18 +10,16 @@ export const profile = {
     en: 'MSc Computer Science student at DTU · CTO at Barcoa',
   },
   email: 'jeppethy@outlook.com',
-  phone: '+47 467 81 510',
-  phoneHref: 'tel:+4746781510',
   linkedin: 'https://www.linkedin.com/in/jeppe-thy/',
   github: 'https://github.com/jeppete',
   about: {
     no: [
-      'Jeg har tatt en litt uvanlig vei inn i teknologien. Jeg startet med en bachelor på Politihøgskolen og jobbet som politibetjent, før jeg byttet spor og tok en bachelor i digital infrastruktur og cybersikkerhet ved NTNU. Ved siden av studiene jobbet jeg deltid som fengselsbetjent.',
-      'Nå bor jeg i København, hvor jeg tar en master i Computer Science and Engineering ved DTU — ved siden av rollene som CTO i Barcoa og fullstack-utvikler i Legid.',
+      'Jeg har tatt en litt uvanlig vei inn i IT. Jeg startet med en bachelor på Politihøgskolen og jobbet som politibetjent, før jeg byttet spor og tok en bachelor i digital infrastruktur og cybersikkerhet ved NTNU.',
+      'Nå bor jeg i København, hvor jeg tar en master i Computer Science and Engineering med spesialisering i cybersikkerhet ved DTU, med fullført grad i juli 2027. Ved siden av studiene er jeg CTO for Barcoa, en mobilapp, samtidig som jeg er deltidsansatt som fullstackutvikler i Legid.',
     ],
     en: [
-      "I took an unusual route into tech. I started with a bachelor's degree at the Norwegian Police University College and worked as a police officer, before switching tracks to a BSc in digital infrastructure and cybersecurity at NTNU — working part-time as a prison officer alongside my studies.",
-      'I now live in Copenhagen, pursuing an MSc in Computer Science and Engineering at DTU — alongside my roles as CTO at Barcoa and full-stack developer at Legid.',
+      "I took an unusual route into IT. I started with a bachelor's degree at the Norwegian Police University College and worked as a police officer, before switching tracks to a BSc in digital infrastructure and cybersecurity at NTNU.",
+      'I now live in Copenhagen, pursuing an MSc in Computer Science and Engineering with a specialisation in cybersecurity at DTU, graduating in July 2027. Alongside my studies I am CTO of Barcoa, a mobile app, while also working part-time as a full-stack developer at Legid.',
     ],
   },
 }
@@ -32,7 +30,7 @@ export const experience = [
     role: { no: 'CTO', en: 'CTO' },
     org: 'Barcoa',
     url: 'https://barcoa.no',
-    location: { no: 'København, Danmark', en: 'Copenhagen, Denmark' },
+    location: null,
     start: '2025-10',
     end: null,
     summary: {
@@ -204,7 +202,8 @@ export const skills = [
       { no: 'JavaScript / TypeScript', en: 'JavaScript / TypeScript' },
       { no: 'Python', en: 'Python' },
       { no: 'SQL', en: 'SQL' },
-      { no: 'HTML & CSS', en: 'HTML & CSS' },
+      { no: 'C', en: 'C' },
+      { no: 'C#', en: 'C#' },
     ],
   },
   {
@@ -212,6 +211,7 @@ export const skills = [
     label: { no: 'Web & fullstack', en: 'Web & full-stack' },
     items: [
       { no: 'React', en: 'React' },
+      { no: 'React Native', en: 'React Native' },
       { no: 'Node.js', en: 'Node.js' },
       { no: 'REST-API-er', en: 'REST APIs' },
       { no: 'Git', en: 'Git' },
@@ -233,8 +233,8 @@ export const skills = [
     label: { no: 'Profesjonelt', en: 'Professional' },
     items: [
       { no: 'Ledelse', en: 'Leadership' },
-      { no: 'Prosjektledelse', en: 'Project management' },
-      { no: 'Formidling', en: 'Communication' },
+      { no: 'Smidige metoder', en: 'Agile methods' },
+      { no: 'Kundekontakt', en: 'Client relations' },
     ],
   },
 ]

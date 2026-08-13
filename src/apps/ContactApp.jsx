@@ -6,7 +6,6 @@ export default function ContactApp() {
   const { locale, t } = useLocale()
   const rows = [
     [t('contact.email'), profile.email, `mailto:${profile.email}`],
-    [t('contact.phone'), profile.phone, profile.phoneHref],
     ['LinkedIn', 'linkedin.com/in/jeppe-thy', profile.linkedin],
     ['GitHub', 'github.com/jeppete', profile.github],
     [t('contact.location'), pick(profile.location, locale), null],
