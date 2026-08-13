@@ -1,4 +1,4 @@
-import { appIds, publicAppIds } from '../os/appMeta'
+import { appIds } from '../os/appMeta'
 import { pick } from '../i18n/localeContext'
 import { profile, experience, education, skills, volunteer, formatRange } from '../content/cv'
 import { flagTable, readStorageFlag, checkRootPassword, getRootFlag } from '../os/flagState'
@@ -96,7 +96,6 @@ export const commands = [
       const { t } = ctx
       if (args[0] === 'reset') {
         ctx.flags.reset()
-        ctx.closeWindow('vault')
         return [{ kind: 'ok', text: t('flags.resetDone') }]
       }
       const { captured, total, allCaptured } = ctx.flags
@@ -108,7 +107,7 @@ export const commands = [
           lines.push('[   ] ???')
         }
       }
-      if (allCaptured) lines.push({ kind: 'ok', text: t('flags.done') })
+      if (allCaptured) lines.push({ kind: 'ctfart' })
       return lines
     },
   },
@@ -128,12 +127,7 @@ export const commands = [
         `  ${t(flag.quipKey)}`,
       ]
       if (res.allCaptured) {
-        lines.push(
-          { kind: 'ok', text: t('capture.alldone1') },
-          { kind: 'ok', text: t('capture.alldone2') },
-          { kind: 'ok', text: t('capture.alldone3') },
-        )
-        ctx.openWindow('vault')
+        lines.push({ kind: 'ok', text: t('capture.alldone1') }, { kind: 'ctfart' })
       }
       return lines
     },
@@ -141,13 +135,10 @@ export const commands = [
   {
     name: 'open',
     descKey: 'cmd.open',
-    argCompletions: publicAppIds,
+    argCompletions: appIds,
     run: (args, ctx) => {
       const id = args[0]
       if (!id) return [ctx.t('open.usage')]
-      if (id === 'vault' && !ctx.flags.allCaptured) {
-        return [{ kind: 'err', text: ctx.t('open.locked') }]
-      }
       if (!appIds.includes(id)) return [{ kind: 'err', text: ctx.t('open.unknown', id) }]
       return openApp(id, ctx)
     },
@@ -156,9 +147,8 @@ export const commands = [
     name: 'ls',
     aliases: ['dir'],
     descKey: 'cmd.ls',
-    run: (args, ctx) => {
-      const ids = ctx.flags.allCaptured ? [...publicAppIds, 'vault'] : publicAppIds
-      const entries = ids.map((id) => `${id}/`)
+    run: (args) => {
+      const entries = appIds.map((id) => `${id}/`)
       if (args.includes('-a')) entries.push(...fakeFileNames)
       return [entries.join('  ')]
     },

@@ -6,7 +6,6 @@ import SkillsApp from '../apps/SkillsApp'
 import VolunteerApp from '../apps/VolunteerApp'
 import ContactApp from '../apps/ContactApp'
 import ChatApp from '../apps/ChatApp'
-import VaultApp from '../apps/VaultApp'
 
 export const windowRegistry = {
   terminal: Terminal,
@@ -17,5 +16,4 @@ export const windowRegistry = {
   volunteer: VolunteerApp,
   contact: ContactApp,
   chat: ChatApp,
-  vault: VaultApp,
 }

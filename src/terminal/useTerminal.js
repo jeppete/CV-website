@@ -23,7 +23,7 @@ function longestCommonPrefix(items) {
 }
 
 export function useTerminal() {
-  const { openWindow, closeWindow } = useOS()
+  const { openWindow } = useOS()
   const { locale, setLocale, t } = useLocale()
   const { theme, setTheme } = useTheme()
   const flags = useFlags()
@@ -56,9 +56,9 @@ export function useTerminal() {
         push([{ kind: 'err', text: t('term.notfound', name) }])
         return
       }
-      push(cmd.run(args, { openWindow, closeWindow, setLocale, locale, t, clear, theme, setTheme, flags }) || [])
+      push(cmd.run(args, { openWindow, setLocale, locale, t, clear, theme, setTheme, flags }) || [])
     },
-    [push, clear, openWindow, closeWindow, setLocale, locale, t, theme, setTheme, flags],
+    [push, clear, openWindow, setLocale, locale, t, theme, setTheme, flags],
   )
 
   const historyPrev = useCallback(() => {

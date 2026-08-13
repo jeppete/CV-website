@@ -11,12 +11,9 @@ export const appMeta = [
   { id: 'volunteer', glyph: '&', titleKey: 'app.volunteer', x: 320, y: 160, w: 540 },
   { id: 'contact', glyph: '*', titleKey: 'app.contact', x: 380, y: 180, w: 440 },
   { id: 'chat', glyph: '?', titleKey: 'app.chat', x: 300, y: 90, w: 460, h: 520 },
-  { id: 'vault', glyph: '⚑', titleKey: 'app.vault', x: 240, y: 110, w: 520, hidden: true },
 ]
 
 export const appIds = appMeta.map((a) => a.id)
-
-export const publicAppIds = appMeta.filter((a) => !a.hidden).map((a) => a.id)
 
 export function getAppMeta(id) {
   return appMeta.find((a) => a.id === id)

@@ -1,4 +1,5 @@
 import Neofetch from './Neofetch'
+import CtfArt from './CtfArt'
 
 export function Prompt() {
   return (
@@ -33,6 +34,8 @@ export default function OutputLine({ line }) {
       )
     case 'neofetch':
       return <Neofetch />
+    case 'ctfart':
+      return <CtfArt />
     default:
       return <div className="term-line">{line.text}</div>
   }

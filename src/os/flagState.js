@@ -37,7 +37,7 @@ export const flagTable = [
   { id: 'storage', hash: '1cf005f3bd2832' },
   { id: 'leak', hash: '72dbd6ede6b76' },
   { id: 'root', hash: '121b3fe0f48ca5' },
-].map((f) => ({ ...f, quipKey: `flags.quip.${f.id}`, lessonKey: `flags.lesson.${f.id}`, nameKey: `flags.name.${f.id}` }))
+].map((f) => ({ ...f, quipKey: `flags.quip.${f.id}`, nameKey: `flags.name.${f.id}` }))
 
 export const TOTAL_FLAGS = flagTable.length
 

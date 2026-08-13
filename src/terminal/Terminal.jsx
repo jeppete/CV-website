@@ -66,7 +66,13 @@ export default function Terminal() {
 
   return (
     // Click-to-focus convenience; the real input remains keyboard-accessible.
-    <div className="flex h-full min-h-0 flex-col" onClick={() => inputRef.current?.focus()}>
+    // Skip when the user just drag-selected text — focusing would wipe the selection.
+    <div
+      className="flex h-full min-h-0 flex-col"
+      onClick={() => {
+        if (window.getSelection()?.isCollapsed) inputRef.current?.focus()
+      }}
+    >
       <div
         ref={scrollRef}
         role="log"
