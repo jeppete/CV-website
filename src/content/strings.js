@@ -106,6 +106,92 @@ export const strings = {
   'neofetch.locale': { no: 'Språk', en: 'Locale' },
   'neofetch.packages': { no: 'Pakker', en: 'Packages' },
   'neofetch.packagesValue': { no: 'fullstack, sikkerhet, ledelse', en: 'fullstack, security, leadership' },
+
+  // CTF easter egg
+  'app.vault': { no: 'Hvelvet', en: 'The Vault' },
+  'cmd.flags': { no: 'CTF: vis flaggjakt-fremdrift', en: 'CTF: show flag-hunt progress' },
+  'cmd.capture': { no: 'lever et flagg: capture JEPPE{...}', en: 'submit a flag: capture JEPPE{...}' },
+
+  'flags.header': { no: 'CAPTURE THE FLAG — %s flagg fanget', en: 'CAPTURE THE FLAG — %s flags captured' },
+  'flags.done': {
+    no: "Alle 5 flagg fanget — hvelvet er låst opp. Kjør 'open vault'.",
+    en: "All 5 flags captured — the vault is unlocked. Run 'open vault'.",
+  },
+  'flags.resetDone': { no: 'Fremdriften er nullstilt.', en: 'Progress cleared.' },
+
+  'flags.name.recon': { no: 'Rekognosering', en: 'Recon' },
+  'flags.name.b64': { no: 'Koding ≠ kryptering', en: 'Encoding ≠ encryption' },
+  'flags.name.storage': { no: 'Klientside-lagring', en: 'Client-side storage' },
+  'flags.name.leak': { no: 'Lekkede påloggingsdetaljer', en: 'Leaked credentials' },
+  'flags.name.root': { no: 'Rettighetseskalering', en: 'Privilege escalation' },
+
+  'flags.quip.recon': { no: 'Robotene sladret.', en: 'The robots ratted it out.' },
+  'flags.quip.b64': { no: 'Dekodet. atob() hilser.', en: 'Decoded. atob() sends its regards.' },
+  'flags.quip.storage': { no: 'Den lå i nettleseren din hele tiden.', en: 'It was sitting in your browser the whole time.' },
+  'flags.quip.leak': { no: 'TODO: slett før deploy. Det skjer aldri.', en: 'TODO: delete before deploy. They never do.' },
+  'flags.quip.root': { no: 'hunter2. En klassiker.', en: 'hunter2. A classic.' },
+
+  'flags.lesson.recon': {
+    no: 'robots.txt og sidekilden er offentlige — bruk dem aldri til å gjemme noe.',
+    en: 'robots.txt and page source are public — never use them to hide anything.',
+  },
+  'flags.lesson.b64': {
+    no: 'Base64 er koding, ikke kryptering. Hemmeligheter i logger er hemmeligheter på avveie.',
+    en: 'Base64 is encoding, not encryption. Secrets in logs are secrets leaked.',
+  },
+  'flags.lesson.storage': {
+    no: 'localStorage kan leses fritt av brukeren — lagre aldri hemmeligheter på klientsiden.',
+    en: 'localStorage is fully readable by the user — never store secrets client-side.',
+  },
+  'flags.lesson.leak': {
+    no: 'Backup- og konfigfiler i webroten lekker passord og nøkler. Å svarteliste dem i robots.txt er bare gratis reklame.',
+    en: 'Backup and config files in webroots leak credentials. Deny-listing them in robots.txt just advertises them.',
+  },
+  'flags.lesson.root': {
+    no: 'Hemmeligheter skrevet som kommandoer havner i shell-historikken. Roter alt som har vært innom en terminal.',
+    en: 'Secrets typed as commands end up in shell history. Rotate anything that touches a terminal.',
+  },
+
+  'capture.usage': { no: 'bruk: capture JEPPE{...}', en: 'usage: capture JEPPE{...}' },
+  'capture.ok': { no: 'Flagg fanget! (%s)', en: 'Flag captured! (%s)' },
+  'capture.dupe': { no: 'Allerede fanget.', en: 'Already captured.' },
+  'capture.invalid': { no: 'Feil flagg. Grav videre.', en: 'Incorrect flag. Keep digging.' },
+  'capture.alldone1': { no: 'ALLE 5 FLAGG FANGET — root-tilgang innvilget.', en: 'ALL 5 FLAGS CAPTURED — root access granted.' },
+  'capture.alldone2': { no: 'Hvelvet er lagt til i dokken.', en: 'The vault has been added to the dock.' },
+  'capture.alldone3': { no: 'Åpner hvelvet …', en: 'Opening vault…' },
+
+  'sudo.logged': { no: 'Hendelsen er loggført i auth.log.', en: 'This incident has been logged to auth.log.' },
+  'sudo.passreq': { no: 'sudo: passord kreves (bruk: sudo su <passord>)', en: 'sudo: a password is required (usage: sudo su <password>)' },
+  'sudo.wrongpass': { no: 'Beklager, prøv igjen.', en: 'Sorry, try again.' },
+  'sudo.root1': { no: 'root@jeppeos:~# whoami → root', en: 'root@jeppeos:~# whoami → root' },
+  'sudo.root2': { no: 'Alt jeg ser er *******.', en: 'All I see is *******.' },
+  'sudo.root3': { no: 'Her er flagget ditt: %s', en: 'Here is your flag: %s' },
+
+  'open.locked': { no: 'vault: ingen tilgang — fang alle 5 flagg først', en: 'vault: permission denied — capture all 5 flags first' },
+  'cat.webroot': {
+    no: 'cat: %s serveres fra webroten — åpne den i nettleseren i stedet',
+    en: 'cat: %s is served from the web root — open it in your browser instead',
+  },
+  'printenv.note': {
+    no: '# lastet fra nettleserens localStorage (jeppeos.*) — alle kan lese dette',
+    en: '# loaded from browser localStorage (jeppeos.*) — anyone can read this',
+  },
+
+  'vault.congratsTitle': { no: 'ROOT-TILGANG INNVILGET', en: 'ROOT ACCESS GRANTED' },
+  'vault.congratsBody': {
+    no: 'Du fant alle fem flaggene — det er det svært få som gjør. Nysgjerrigheten som fikk deg hit, viljen til å pirke i det et system deler ut og det det prøver å gjemme, er akkurat det sikkerhetsarbeid trenger.',
+    en: 'You found all five flags — that puts you in rare company. The curiosity that got you here, poking at what a system hands out and what it tries to hide, is exactly what security work needs.',
+  },
+  'vault.flagsTitle': { no: 'Det du lærte', en: 'What you learned' },
+  'vault.interestsTitle': { no: 'Jeppe og sikkerhet', en: 'Jeppe & security' },
+  'vault.interestsBody': {
+    no: 'Jeppe tar en master ved DTU med spesialisering i cybersikkerhet, og bruker fritiden på CTF-er og sideprosjekter som dette. Han er like nysgjerrig på den defensive som den offensive siden av sikkerhet — hvordan systemer knekker, og hvordan de bygges så de ikke gjør det.',
+    en: 'Jeppe is doing his MSc at DTU with a cybersecurity specialisation, and spends his spare time on CTFs and side projects like this one. He is equally curious about the defensive and the offensive side of security — how systems break, and how to build them so they do not.',
+  },
+  'vault.contact': {
+    no: 'Nevn gjerne hvelvet om du tar kontakt — da vet Jeppe at du er typen som graver.',
+    en: 'If you reach out, mention the vault — Jeppe will know you are the kind who digs.',
+  },
 }
 
 export const bootLines = [
@@ -114,6 +200,7 @@ export const bootLines = [
   { no: 'Laster kjerne: politi → cybersikkerhet', en: 'Loading kernel: police → cybersecurity' },
   { no: 'Monterer /erfaring … OK', en: 'Mounting /experience … OK' },
   { no: 'Monterer /utdanning … OK', en: 'Mounting /education … OK' },
+  { no: 'Laster ctf-modul … 5 flagg gjemt', en: 'Loading ctf module … 5 flags hidden' },
   { no: 'Starter jsh …', en: 'Starting jsh …' },
 ]
 

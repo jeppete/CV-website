@@ -1,6 +1,8 @@
-import { appIds } from '../os/appMeta'
+import { appIds, publicAppIds } from '../os/appMeta'
 import { pick } from '../i18n/localeContext'
 import { profile, experience, education, skills, volunteer, formatRange } from '../content/cv'
+import { flagTable, readStorageFlag, checkRootPassword, getRootFlag } from '../os/flagState'
+import { fakeFiles, fakeFileNames } from './fakeFiles'
 
 // A command's run(args, ctx) returns an array of line descriptors:
 //   string                                  → plain output line
@@ -88,12 +90,64 @@ export const commands = [
     run: (args, ctx) => openApp('chat', ctx),
   },
   {
+    name: 'flags',
+    descKey: 'cmd.flags',
+    run: (args, ctx) => {
+      const { t } = ctx
+      if (args[0] === 'reset') {
+        ctx.flags.reset()
+        ctx.closeWindow('vault')
+        return [{ kind: 'ok', text: t('flags.resetDone') }]
+      }
+      const { captured, total, allCaptured } = ctx.flags
+      const lines = [t('flags.header', `${captured.length}/${total}`)]
+      for (const f of flagTable) {
+        if (captured.includes(f.id)) {
+          lines.push({ kind: 'ok', text: `[ ✓ ] ${t(f.nameKey)}` })
+        } else {
+          lines.push('[   ] ???')
+        }
+      }
+      if (allCaptured) lines.push({ kind: 'ok', text: t('flags.done') })
+      return lines
+    },
+  },
+  {
+    name: 'capture',
+    aliases: ['submit'],
+    descKey: 'cmd.capture',
+    run: (args, ctx) => {
+      const { t } = ctx
+      if (args.length === 0) return [t('capture.usage')]
+      const res = ctx.flags.capture(args.join(' '))
+      if (res.status === 'invalid') return [{ kind: 'err', text: t('capture.invalid') }]
+      if (res.status === 'dupe') return [t('capture.dupe')]
+      const flag = flagTable.find((f) => f.id === res.id)
+      const lines = [
+        { kind: 'ok', text: t('capture.ok', `${res.count}/${ctx.flags.total}`) },
+        `  ${t(flag.quipKey)}`,
+      ]
+      if (res.allCaptured) {
+        lines.push(
+          { kind: 'ok', text: t('capture.alldone1') },
+          { kind: 'ok', text: t('capture.alldone2') },
+          { kind: 'ok', text: t('capture.alldone3') },
+        )
+        ctx.openWindow('vault')
+      }
+      return lines
+    },
+  },
+  {
     name: 'open',
     descKey: 'cmd.open',
-    argCompletions: appIds,
+    argCompletions: publicAppIds,
     run: (args, ctx) => {
       const id = args[0]
       if (!id) return [ctx.t('open.usage')]
+      if (id === 'vault' && !ctx.flags.allCaptured) {
+        return [{ kind: 'err', text: ctx.t('open.locked') }]
+      }
       if (!appIds.includes(id)) return [{ kind: 'err', text: ctx.t('open.unknown', id) }]
       return openApp(id, ctx)
     },
@@ -102,16 +156,36 @@ export const commands = [
     name: 'ls',
     aliases: ['dir'],
     descKey: 'cmd.ls',
-    run: () => [appIds.map((id) => `${id}/`).join('  ')],
+    run: (args, ctx) => {
+      const ids = ctx.flags.allCaptured ? [...publicAppIds, 'vault'] : publicAppIds
+      const entries = ids.map((id) => `${id}/`)
+      if (args.includes('-a')) entries.push(...fakeFileNames)
+      return [entries.join('  ')]
+    },
   },
   {
     name: 'cat',
     hidden: true,
-    argCompletions: sectionIds,
+    argCompletions: [...sectionIds, ...fakeFileNames],
     run: (args, ctx) => {
       if (!args[0]) return [ctx.t('open.usage').replace('open', 'cat')]
+      if (fakeFiles[args[0]]) return fakeFiles[args[0]]
+      if (args[0] === 'env.backup' || args[0] === 'robots.txt') {
+        return [ctx.t('cat.webroot', `/${args[0]}`)]
+      }
       return printSection(args[0], ctx)
     },
+  },
+  {
+    name: 'printenv',
+    hidden: true,
+    run: (args, ctx) => [
+      ctx.t('printenv.note'),
+      `JEPPEOS_LANG=${ctx.locale}`,
+      `JEPPEOS_THEME=${ctx.theme}`,
+      'JEPPEOS_SHELL=/bin/jsh',
+      `JEPPEOS_DEBUG_SESSION=${readStorageFlag()}`,
+    ],
   },
   {
     name: 'lang',
@@ -154,7 +228,20 @@ export const commands = [
   {
     name: 'sudo',
     hidden: true,
-    run: (args, ctx) => [{ kind: 'err', text: ctx.t('sudo.denied') }],
+    run: (args, ctx) => {
+      if (args[0] === 'su') {
+        if (!args[1]) return [{ kind: 'err', text: ctx.t('sudo.passreq') }]
+        if (checkRootPassword(args[1])) {
+          return [
+            { kind: 'ok', text: ctx.t('sudo.root1') },
+            ctx.t('sudo.root2'),
+            { kind: 'ok', text: ctx.t('sudo.root3', getRootFlag()) },
+          ]
+        }
+        return [{ kind: 'err', text: ctx.t('sudo.wrongpass') }]
+      }
+      return [{ kind: 'err', text: ctx.t('sudo.denied') }, ctx.t('sudo.logged')]
+    },
   },
   {
     name: 'exit',

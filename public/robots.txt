@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /env.backup
+
+# Nothing to see here. Definitely not JEPPE{r0b0ts_c4nt_k33p_s3cr3ts}
