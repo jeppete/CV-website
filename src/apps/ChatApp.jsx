@@ -136,10 +136,6 @@ export default function ChatApp() {
         )}
       </div>
 
-      <p className="border-t border-chrome-edge bg-chrome/40 px-3 py-1 text-[10px] text-phosphor-faint">
-        {t('chat.disclaimer')}
-      </p>
-
       <div className="flex gap-2 border-t border-chrome-edge bg-crt-deep p-2">
         <input
           ref={inputRef}

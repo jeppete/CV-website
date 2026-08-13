@@ -74,12 +74,8 @@ export const strings = {
   'contact.location': { no: 'Sted', en: 'Location' },
 
   'chat.intro': {
-    no: 'Hei! Jeg er JeppeOS-assistenten. Spør meg om Jeppes erfaring, utdanning eller ferdigheter — jeg svarer kun ut fra CV-en hans.',
-    en: "Hi! I'm the JeppeOS assistant. Ask me about Jeppe's experience, education or skills — I only answer from his CV.",
-  },
-  'chat.disclaimer': {
-    no: 'AI-assistent · svarer kun fra Jeppes CV',
-    en: "AI assistant · answers only from Jeppe's CV",
+    no: 'Hei! Jeg er JeppeOS-assistenten. Spør meg om Jeppes erfaring, utdanning eller ferdigheter.',
+    en: "Hi! I'm the JeppeOS assistant. Ask me about Jeppe's experience, education or skills.",
   },
   'chat.placeholder': { no: 'skriv et spørsmål …', en: 'ask a question …' },
   'chat.inputLabel': { no: 'Melding til assistenten', en: 'Message to the assistant' },
