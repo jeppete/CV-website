@@ -128,7 +128,7 @@ export const strings = {
 
 export const bootLines = [
   { no: 'JeppeOS BIOS v1.0 — initialiserer …', en: 'JeppeOS BIOS v1.0 — initializing …' },
-  { no: 'Minnetest: 640K OK (mer enn nok for en CV)', en: 'Memory check: 640K OK (plenty for a CV)' },
+  { no: 'Minnetest: 640K OK', en: 'Memory check: 640K OK' },
   { no: 'Laster kjerne: politi → cybersikkerhet', en: 'Loading kernel: police → cybersecurity' },
   { no: 'Monterer /erfaring … OK', en: 'Mounting /experience … OK' },
   { no: 'Monterer /utdanning … OK', en: 'Mounting /education … OK' },
