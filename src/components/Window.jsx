@@ -54,7 +54,7 @@ export default function Window({
             ×
           </button>
         </div>
-        <div className={`min-h-0 flex-1 overflow-y-auto ${['terminal', 'chat'].includes(meta.id) ? '' : 'p-4'}`}>
+        <div className={`min-h-0 flex-1 overflow-y-auto ${meta.id === 'terminal' ? '' : 'p-4'}`}>
           {children}
         </div>
       </MotionDiv>
@@ -107,7 +107,7 @@ export default function Window({
         </button>
       </div>
       <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto">
-        {['terminal', 'chat'].includes(meta.id) ? children : <div className="p-4">{children}</div>}
+        {meta.id === 'terminal' ? children : <div className="p-4">{children}</div>}
       </div>
     </MotionDiv>
   )

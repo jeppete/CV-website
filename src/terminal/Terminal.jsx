@@ -4,7 +4,7 @@ import OutputLine, { Prompt } from './OutputLine'
 import { useLocale } from '../i18n/useLocale'
 import { useIsMobile } from '../components/useIsMobile'
 
-const CHIPS = ['help', 'chat', 'whoami', 'experience', 'education', 'skills', 'contact', 'neofetch']
+const CHIPS = ['help', 'whoami', 'experience', 'education', 'skills', 'contact', 'neofetch']
 
 export default function Terminal() {
   const { lines, input, setInput, exec, historyPrev, historyNext, complete } = useTerminal()

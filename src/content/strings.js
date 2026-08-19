@@ -11,7 +11,6 @@ export const strings = {
   'app.skills': { no: 'Ferdigheter', en: 'Skills' },
   'app.volunteer': { no: 'Verv', en: 'Volunteer work' },
   'app.contact': { no: 'Kontakt', en: 'Contact' },
-  'app.chat': { no: 'Spør Jeppe', en: 'Ask Jeppe' },
 
   'window.close': { no: 'Lukk vindu', en: 'Close window' },
   'dock.label': { no: 'Apper', en: 'Apps' },
@@ -39,7 +38,6 @@ export const strings = {
   'cmd.lang': { no: 'bytt språk: lang no|en', en: 'switch language: lang no|en' },
   'cmd.neofetch': { no: 'systeminfo', en: 'system info' },
   'cmd.theme': { no: 'bytt tema: theme dark|light', en: 'switch theme: theme dark|light' },
-  'cmd.chat': { no: 'spør AI-assistenten om Jeppe', en: 'ask the AI assistant about Jeppe' },
   'cmd.clear': { no: 'tøm terminalen', en: 'clear the terminal' },
 
   'lang.usage': { no: 'bruk: lang no | lang en (nå: %s)', en: 'usage: lang no | lang en (current: %s)' },
@@ -72,27 +70,6 @@ export const strings = {
 
   'contact.email': { no: 'E-post', en: 'Email' },
   'contact.location': { no: 'Sted', en: 'Location' },
-
-  'chat.intro': {
-    no: 'Hei! Jeg er JeppeOS-assistenten. Spør meg om Jeppes erfaring, utdanning eller ferdigheter.',
-    en: "Hi! I'm the JeppeOS assistant. Ask me about Jeppe's experience, education or skills.",
-  },
-  'chat.placeholder': { no: 'skriv et spørsmål …', en: 'ask a question …' },
-  'chat.inputLabel': { no: 'Melding til assistenten', en: 'Message to the assistant' },
-  'chat.send': { no: 'Send', en: 'Send' },
-  'chat.thinking': { no: 'tenker …', en: 'thinking …' },
-  'chat.error': {
-    no: 'Beklager, noe gikk galt. Prøv igjen.',
-    en: 'Sorry, something went wrong. Please try again.',
-  },
-  'chat.retry': { no: 'Prøv igjen', en: 'Retry' },
-  'chat.notConfigured': {
-    no: 'Assistenten er ikke tilgjengelig i dette miljøet ennå.',
-    en: "The assistant isn't available in this environment yet.",
-  },
-  'chat.suggest1': { no: 'Hva jobber Jeppe med nå?', en: 'What is Jeppe working on now?' },
-  'chat.suggest2': { no: 'Fortell om utdanningen hans', en: 'Tell me about his education' },
-  'chat.suggest3': { no: 'Hvilke ferdigheter har han?', en: 'What are his skills?' },
 
   'edu.thesisNow': { no: 'pågår', en: 'in progress' },
 
