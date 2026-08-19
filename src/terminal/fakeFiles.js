@@ -20,6 +20,7 @@ export const fakeFiles = {
     'nano public/env.backup   # TODO: delete this before deploy!!',
     'sudo su',
     'hunter2',
+    'scp dump.sql backup-db-01.jeppethy.no:/srv/backups/',
     'history -c',
     'exit',
   ],
